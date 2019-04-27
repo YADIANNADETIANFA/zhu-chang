@@ -1,4 +1,7 @@
-//µİ¹é
+//ç‰›ç‰›å‡†å¤‡å‚åŠ å­¦æ ¡ç»„ç»‡çš„æ˜¥æ¸¸, å‡ºå‘å‰ç‰›ç‰›å‡†å¤‡å¾€èƒŒåŒ…é‡Œè£…å…¥ä¸€äº›é›¶é£Ÿ, ç‰›ç‰›çš„èƒŒåŒ…å®¹é‡ä¸ºwã€‚
+//ç‰›ç‰›å®¶é‡Œä¸€å…±æœ‰nè¢‹é›¶é£Ÿ, ç¬¬iè¢‹é›¶é£Ÿä½“ç§¯ä¸ºv[i]ã€‚
+//ç‰›ç‰›æƒ³çŸ¥é“åœ¨æ€»ä½“ç§¯ä¸è¶…è¿‡èƒŒåŒ…å®¹é‡çš„æƒ…å†µä¸‹,ä»–ä¸€å…±æœ‰å¤šå°‘ç§é›¶é£Ÿæ”¾æ³•(æ€»ä½“ç§¯ä¸º0ä¹Ÿç®—ä¸€ç§æ”¾æ³•)ã€‚
+//é€’å½’
 #include<cstdio>
 #include<algorithm>
 #include<vector>
@@ -10,22 +13,22 @@ struct Food
 {
 	long long weight = 0;
 	//bool InBag = false;
-}food[MAX];//±ØĞë³£Á¿Öµ
+}food[MAX];//å¿…é¡»å¸¸é‡å€¼
 
 bool compare(Food food1, Food food2)
 {
 	return food1.weight < food2.weight;
 }
 
-long long Num_of_save(vector<Food> food_weight, long long num_of_food, long long remain_bag_contain,int num_of_food_needIn,int select_band)//Ö÷Òªµİ¹éº¯Êı
+long long Num_of_save(vector<Food> food_weight, long long num_of_food, long long remain_bag_contain,int num_of_food_needIn,int select_band)//ä¸»è¦é€’å½’å‡½æ•°
 {
-	if (num_of_food_needIn == 0 && remain_bag_contain >= 0)//Ò»¹²Òª·ÅÈë3´ü£¬ÏÈ·ÅÈë1´ü£¬ÔÙ·ÅÈë1´ü£¬ÔÙ·ÅÈë1´ü£¬¿´·ÅÍêºóÊÇ·ñ·ûºÏÒªÇó£¬
-		return 1;                                           //Èç¹û¸Ã·½°¸Âú×ã£¬½á¹û¾Í¼Ó1
+	if (num_of_food_needIn == 0 && remain_bag_contain >= 0)//ä¸€å…±è¦æ”¾å…¥3è¢‹ï¼Œå…ˆæ”¾å…¥1è¢‹ï¼Œå†æ”¾å…¥1è¢‹ï¼Œå†æ”¾å…¥1è¢‹ï¼Œçœ‹æ”¾å®Œåæ˜¯å¦ç¬¦åˆè¦æ±‚ï¼Œ
+		return 1;                                           //å¦‚æœè¯¥æ–¹æ¡ˆæ»¡è¶³ï¼Œç»“æœå°±åŠ 1
 
-	int count = 0;//¾ÙÀı£¬Èç¹û¹²3´üÒÑÈ¡2´ü£¬ÄÇ×îºóÒ»´ü»¹ÓĞºÜ¶àÈ¡·¨£¬ÓÃcountÒ»Ò»ÁĞ³ö
-	for (int i = select_band; i < num_of_food; ++i)//1¡¢2+3ºÍ1+2¡¢3ÕâÁ½ÖÖÈ¡Èı´ü·½Ê½ÏàÍ¬£¬ÊôÓÚÖØ¸´£¬Îª±ÜÃâ£¬ÎÒÃÇÖ»È¡Ä¿Ç°¸Ã´üºóÃæ´üµÄÁãÊ³£¬Ö»ÏòÓÒ²»»á×ó
+	int count = 0;//ä¸¾ä¾‹ï¼Œå¦‚æœå…±3è¢‹å·²å–2è¢‹ï¼Œé‚£æœ€åä¸€è¢‹è¿˜æœ‰å¾ˆå¤šå–æ³•ï¼Œç”¨countä¸€ä¸€åˆ—å‡º
+	for (int i = select_band; i < num_of_food; ++i)//1ã€2+3å’Œ1+2ã€3è¿™ä¸¤ç§å–ä¸‰è¢‹æ–¹å¼ç›¸åŒï¼Œå±äºé‡å¤ï¼Œä¸ºé¿å…ï¼Œæˆ‘ä»¬åªå–ç›®å‰è¯¥è¢‹åé¢è¢‹çš„é›¶é£Ÿï¼Œåªå‘å³ä¸ä¼šå·¦
 	{
-		if (food_weight[i].weight > remain_bag_contain)//¼ÓÉÏºó£¬AC´Ó80µ½100£¬¸´ÔÓ¶ÈÒ²²»³¬Ê±ÁË
+		if (food_weight[i].weight > remain_bag_contain)//åŠ ä¸Šåï¼ŒACä»80åˆ°100ï¼Œå¤æ‚åº¦ä¹Ÿä¸è¶…æ—¶äº†
 			break;
 		count += Num_of_save(food_weight, num_of_food, remain_bag_contain - food_weight[i].weight, num_of_food_needIn - 1, i + 1);
 	}
@@ -44,8 +47,8 @@ int main()
 		}
 		sort(food_weight.begin(), food_weight.begin() + num_of_food, compare);
 
-		long long ans = 1;//³õÊ¼É¶Ò²²»×°
-		int get_max = 0;//×î¶à×°¼¸°üÁãÊ³
+		long long ans = 1;//åˆå§‹å•¥ä¹Ÿä¸è£…
+		int get_max = 0;//æœ€å¤šè£…å‡ åŒ…é›¶é£Ÿ
 		long long contain_current = 0;
 		while (contain_current <= bag_contain && get_max < num_of_food)
 		{
@@ -55,7 +58,7 @@ int main()
 		if (contain_current > bag_contain)
 			--get_max;
 
-		if (get_max == num_of_food)//¼ÓÉÏºóAC´Ó60µ½80£¬¸´ÔÓ¶ÈÒ²²»³¬Ê±ÁË
+		if (get_max == num_of_food)//åŠ ä¸ŠåACä»60åˆ°80ï¼Œå¤æ‚åº¦ä¹Ÿä¸è¶…æ—¶äº†
 			ans = pow(2, get_max);
 		else
 		{
